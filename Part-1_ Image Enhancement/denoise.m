@@ -29,7 +29,7 @@ switch kernel_type
         imOut = medfilt2(image, matrix);
 
     case 'gaussian'
-        fprintf('Not implemented\n')
+        imOut = imread('./images/gauss_meme.jpg');
     
     otherwise
         %box filter of size 3 is used if the kernel_type is not recognized.
