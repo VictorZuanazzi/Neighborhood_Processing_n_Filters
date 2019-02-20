@@ -3,5 +3,11 @@ function G = gauss1D( sigma , kernel_size )
     if mod(kernel_size, 2) == 0
         error('kernel_size must be odd, otherwise the filter will not have a center to convolve on')
     end
-    %% solution
+    
+    domain = [-floor(kernel_size/2):floor(kernel_size/2)];
+    
+    G = (1/(sqrt(2*pi)*sigma))*exp(-domain.^2/(2*sigma^2));
+    
+    G=G/sum(G);
+    
 end
