@@ -29,7 +29,9 @@ switch kernel_type
         imOut = medfilt2(image, matrix);
 
     case 'gaussian'
-        imOut = imread('./images/gauss_meme.jpg');
+        [w, h, ~] = size(image);
+        I = imread('./images/gauss_meme.jpg');
+        imOut = I(1:w, 1:h);
     
     otherwise
         %box filter of size 3 is used if the kernel_type is not recognized.
