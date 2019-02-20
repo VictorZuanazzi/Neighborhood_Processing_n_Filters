@@ -1,5 +1,8 @@
 function [ PSNR ] = myPSNR( orig_image, approx_image )
-fprintf('Not implemented\n')
+
+peaksnr0 = psnr(approx_image,orig_image);
+
+
 
 end
 
