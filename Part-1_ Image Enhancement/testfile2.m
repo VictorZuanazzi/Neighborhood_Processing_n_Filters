@@ -1,7 +1,14 @@
+image='images/image2.jpg';
 
+[Gx, Gy, im_magnitude,im_direction] = compute_gradient(image);
 
-G= gauss1D(2,3)'*gauss1D(2,3);
+visualize(Gx,Gy,im_magnitude,im_direction)
 
-G=G/sum(G,'all');
+min(min(Gx))
 
-sum(G,'all')
+min(min(Gy))
+
+max(max(im_magnitude))
+
+%im_direction
+
