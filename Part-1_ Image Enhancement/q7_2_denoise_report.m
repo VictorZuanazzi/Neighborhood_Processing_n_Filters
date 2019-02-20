@@ -7,7 +7,7 @@ kernel_type = ["box", "median", "gaussian"];
 box_size = [3, 5, 7];
 label = ["original", "gaussian_noise", "salt_n_peper"];
 images = ["./images/image1.jpg", "./images/image1_gaussian.jpg", "./images/image1_saltpepper.jpg"];
-std = [0.1, 1, 10];
+std = 1;
 
 true_im = imread(images(1));
 
@@ -15,11 +15,15 @@ for k = 1: length(label)
     
     image = imread(images(k));
     [w, h, ~] = size(image);
-    for i = 1: length(kernel_type)
+    for i = 1: length(kernel_type)             
         for j = 1:length(box_size)
             
             %denoises the image using the specified filter and box size
-            filtered_im{j} = denoise(image, kernel_type(i), box_size(j));
+            if kernel_type(i) == "gaussian"
+                filtered_im{j} = denoise(image, kernel_type(i),std, box_size(j));
+            else
+                filtered_im{j} = denoise(image, kernel_type(i), box_size(j));
+            end
             
             % calculate psnr 
             im_psnr = myPSNR(true_im, filtered_im{j});
