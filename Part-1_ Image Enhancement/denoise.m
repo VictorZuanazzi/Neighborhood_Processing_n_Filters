@@ -11,7 +11,7 @@ switch kernel_type
         if isempty(varargin)
             box_size = 3;
         else
-            box_size = varargin{1};
+            box_size = make_it_odd(varargin{1});
         end
         imOut = imboxfilt(image, box_size);
         
@@ -19,9 +19,10 @@ switch kernel_type
         if isempty(varargin)
             matrix = [3, 3];
         elseif length(varargin{1}) == 2
-           matrix = varargin{1};   
+           matrix = make_it_odd(varargin{1});   
         elseif length(varargin{1}) == 1
-           matrix = [varargin{1}, varargin{1}];
+           odd_number = make_it_odd(varargin{1});
+           matrix = [odd_number, odd_number];
         else
             matrix = [3, 3];      
         end
@@ -29,6 +30,12 @@ switch kernel_type
         imOut = medfilt2(image, matrix);
 
     case 'gaussian'
+        sigma = varargin{1};
+        kernel_size = make_it_odd(varargin{2});
+        
+        imOut = imfilter(image, gauss2D(sigma, kernel_size));
+        
+    case 'meme'
         [w, h, ~] = size(image);
         I = imread('./images/gauss_meme.jpg');
         imOut = I(1:w, 1:h);
