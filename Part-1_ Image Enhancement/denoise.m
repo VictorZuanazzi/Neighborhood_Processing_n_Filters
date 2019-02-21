@@ -30,10 +30,14 @@ switch kernel_type
         imOut = medfilt2(image, matrix);
 
     case 'gaussian'
-        sigma = varargin{1};
-        kernel_size = make_it_odd(varargin{2});
+        if isempty(varargin)
+            sigma = 1;
+            kernel_size = 3;
+        else
+            sigma = varargin{1};
+            kernel_size = make_it_odd(varargin{2});
         
-        imOut = imfilter(image, gauss2D(sigma, kernel_size));
+        imOut = imfilter(image, gauss2D(sigma, kernel_size), 'conv');
         
     case 'meme'
         [w, h, ~] = size(image);
@@ -42,7 +46,7 @@ switch kernel_type
     
     otherwise
         %box filter of size 3 is used if the kernel_type is not recognized.
-        imOut = denoise( image, 'box', 3);
+        imOut = denoise(image, 'box', 3);
         
 end
 end
