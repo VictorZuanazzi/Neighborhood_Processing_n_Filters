@@ -36,6 +36,7 @@ switch kernel_type
         else
             sigma = varargin{1};
             kernel_size = make_it_odd(varargin{2});
+        end
         
         imOut = imfilter(image, gauss2D(sigma, kernel_size), 'conv');
         
