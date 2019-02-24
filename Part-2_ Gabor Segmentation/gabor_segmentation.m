@@ -191,7 +191,9 @@ if smoothingFlag
         % ii) insert the smoothed image into features(:,:,jj)
     %END_FOR
     for jj = 1:length(featureMags)
-        features(:,:,jj) = imgaussfilt(featureMags{jj}, 2);
+        s = 0.5*gaborFilterBank(jj).sigma;
+        K = 10;
+        features(:,:,jj) = imgaussfilt(featureMags{jj}, K * s);
     end
 else
     % Don't smooth but just insert magnitude images into the matrix
