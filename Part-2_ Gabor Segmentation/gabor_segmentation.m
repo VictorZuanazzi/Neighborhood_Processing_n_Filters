@@ -43,7 +43,9 @@ img      = imresize(img,resize_factor);
 img_gray = rgb2gray(img);
 
 % Display image
-figure(1), imshow(img), title(sprintf('Input image: %s', image_id));
+figure(1);
+imshow(img);
+title(sprintf('Input image: %s', image_id));
 
 %% Design array of Gabor Filters
 % In this code section, you will create a Gabor Filterbank. A filterbank is
@@ -222,8 +224,9 @@ features = features ./ std(features, 0, 2);
 % with the pipeline and filterbank.  
 coeff = pca(features);
 feature2DImage = reshape(features*coeff(:,1),numRows,numCols);
-figure(4)
-imshow(feature2DImage,[]), title('Pixel representation projected onto first PC')
+figure(4);
+imshow(feature2DImage,[]);
+title('Pixel representation projected onto first PC');
 
 
 % Apply k-means algorithm to cluster pixels using the data matrix,
@@ -242,7 +245,7 @@ fprintf('Clustering completed in %.3f seconds.\n', ctime);
 % input size [numRows numCols].
 pixLabels = reshape(pixLabels,[numRows numCols]);
 
-figure(5)
+figure(5);
 imshow(label2rgb(pixLabels)), title('Pixel clusters');
 
 
