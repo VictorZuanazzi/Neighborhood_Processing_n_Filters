@@ -213,8 +213,8 @@ features = reshape(features, numRows * numCols, []);
 % \\ Hint: see http://ufldl.stanford.edu/wiki/index.php/Data_Preprocessing
 %          for more information. \\
 
-features = features - mean(features, 2);
-features = features ./ std(features, 0, 2); 
+features = features - mean(features);
+features = features ./ std(features); 
            % \\ TODO: i)  Implement standardization on matrix called features. 
            %          ii) Return the standardized data matrix.
 
