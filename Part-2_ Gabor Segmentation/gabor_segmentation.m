@@ -69,12 +69,12 @@ n = floor(log2(lambdaMax/lambdaMin));
 lambdas = 2.^(0:(n-2)) * lambdaMin;
 
 % Define the set of orientations for the Gaussian envelope.
-dTheta      = 2*pi/8;                  % \\ the step size
+dTheta      = pi/10;                  % \\ the step size
 orientations = 0:dTheta:(pi/2);       
 
 % Define the set of sigmas for the Gaussian envelope. Sigma here defines 
 % the standard deviation, or the spread of the Gaussian. 
-sigmas = [1,2]; 
+sigmas = [1,4]; 
 
 % Now you can create the filterbank. We provide you with a MATLAB struct
 % called gaborFilterBank in which we will hold the filters and their
@@ -135,8 +135,8 @@ fprintf('--------------------------------------\n')
 %            explain what works better and why shortly in the report.
 featureMaps = cell(length(gaborFilterBank),1);
 for jj = 1 : length(gaborFilterBank)
-    real_out = imfilter(img_gray, gaborFilterBank(jj).filterPairs(:,:,1));  % \\TODO: filter the grayscale input with real part of the Gabor
-    imag_out = imfilter(img_gray, gaborFilterBank(jj).filterPairs(:,:,2));  % \\TODO: filter the grayscale input with imaginary part of the Gabor
+    real_out = imfilter(img_gray, gaborFilterBank(jj).filterPairs(:,:,1), 'conv');  % \\TODO: filter the grayscale input with real part of the Gabor
+    imag_out = imfilter(img_gray, gaborFilterBank(jj).filterPairs(:,:,2), 'conv');  % \\TODO: filter the grayscale input with imaginary part of the Gabor
     featureMaps{jj} = cat(3, real_out, imag_out);
     
     % Visualize the filter responses if you wish.
