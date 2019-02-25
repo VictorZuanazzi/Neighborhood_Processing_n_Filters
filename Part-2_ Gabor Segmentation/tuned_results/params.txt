@@ -1,16 +1,16 @@
-Kobi
+Kobi:
     dTheta:     pi/10
     sigmas:     [1,4]
     psi:        0
     gamma:      0.5
 
-Polar
+Polar:
     dTheta:     pi/10
     sigmas:     [1,4]
     psi:        0
     gamma:      0.5
 
-Robin-1
+Robin-1:
     dTheta:     pi/10
     sigmas:     [1,4]
     psi:        0
@@ -21,3 +21,9 @@ Robin-2:
     sigmas:     [1,4]
     psi:        3
     gamma:      0.5
+
+Cows:
+    dTheta:     pi/10
+    sigmas:     [1,4]
+    psi:        0
+    gamma:      0.5  
