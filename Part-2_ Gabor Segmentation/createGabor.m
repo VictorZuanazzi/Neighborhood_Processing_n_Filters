@@ -77,14 +77,14 @@ function rotMat = generateRotationMatrix(theta)
 % ----------------------------------------------------------
 % Returns the rotation matrix. 
 % \\ Hint: https://en.wikipedia.org/wiki/Rotation_matrix \\
-rotMat = [cos(theta) -sin(theta); sin(theta) cos(theta)];% \\TODO: code the rotation matrix given theta.
+rotMat = [cos(theta) sin(theta); -sin(theta) cos(theta)];% \\TODO: code the rotation matrix given theta.
 end
 
 % ----------------------------------------------------------
 function cosCarrier = createCos(rot_x, lambda, psi)
 % ----------------------------------------------------------
 % Returns the 2D cosine carrier. 
-cosCarrier = cos(2 * pi .* rot_x./lambda + psi);% \\TODO: Implement the cosine given rot_x, lambda and psi.
+cosCarrier = cos(2 * pi * rot_x/lambda + psi);% \\TODO: Implement the cosine given rot_x, lambda and psi.
 
 % Reshape the vector representation to matrix.
 cosCarrier = reshape(cosCarrier, sqrt(length(cosCarrier)), []);
