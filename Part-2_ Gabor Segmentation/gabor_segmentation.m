@@ -226,9 +226,9 @@ features = features ./ std(features, 0, 2);
 % with the pipeline and filterbank.  
 coeff = pca(features);
 feature2DImage = reshape(features*coeff(:,1),numRows,numCols);
-figure(4);
+fig4 = figure(4);
 imshow(feature2DImage,[]);
-title('Pixel representation projected onto first PC');
+title(fig4.CurrentAxes,'Pixel representation projected onto first PC');
 
 
 % Apply k-means algorithm to cluster pixels using the data matrix,
@@ -247,8 +247,9 @@ fprintf('Clustering completed in %.3f seconds.\n', ctime);
 % input size [numRows numCols].
 pixLabels = reshape(pixLabels,[numRows numCols]);
 
-figure(5);
-imshow(label2rgb(pixLabels)), title('Pixel clusters');
+fig5 = figure(5);
+imshow(label2rgb(pixLabels));
+title(fig5.CurrentAxes, 'Pixel clusters');
 
 
 
