@@ -76,6 +76,9 @@ orientations = 0:dTheta:(pi/2);
 % the standard deviation, or the spread of the Gaussian. 
 sigmas = [1,4]; 
 
+psi    = 3;
+gamma  = 0.5;
+
 % Now you can create the filterbank. We provide you with a MATLAB struct
 % called gaborFilterBank in which we will hold the filters and their
 % corresponding parameters such as sigma, lambda and etc. 
@@ -91,8 +94,7 @@ for ii = 1:length(lambdas)
             lambda = lambdas(ii);
             sigma  = sigmas(jj);            
             theta  = orientations(ll);
-            psi    = 0;
-            gamma  = 0.5;
+
             
             % Create a Gabor filter with the specs above. 
             % (We also record the settings in which they are created. )
@@ -229,6 +231,7 @@ feature2DImage = reshape(features*coeff(:,1),numRows,numCols);
 fig4 = figure(4);
 imshow(feature2DImage,[]);
 title(fig4.CurrentAxes,'Pixel representation projected onto first PC');
+saveas(fig4, sprintf('%s_first_pca.png', image_id));
 
 
 % Apply k-means algorithm to cluster pixels using the data matrix,
@@ -250,6 +253,7 @@ pixLabels = reshape(pixLabels,[numRows numCols]);
 fig5 = figure(5);
 imshow(label2rgb(pixLabels));
 title(fig5.CurrentAxes, 'Pixel clusters');
+saveas(fig5, sprintf('%s_pixel_clusters.png', image_id));
 
 
 
@@ -260,8 +264,9 @@ BW = pixLabels == 2;
 BW = repmat(BW,[1 1 3]);
 Aseg1(BW) = img(BW);
 Aseg2(~BW) = img(~BW);
-figure(6)
+fig6 = figure(6)
 imshowpair(Aseg1,Aseg2,'montage')
+saveas(fig6, sprintf('%s_montage.png', image_id));
 
 
 
