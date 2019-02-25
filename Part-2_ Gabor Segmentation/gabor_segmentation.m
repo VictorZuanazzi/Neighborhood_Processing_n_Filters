@@ -231,7 +231,7 @@ feature2DImage = reshape(features*coeff(:,1),numRows,numCols);
 fig4 = figure(4);
 imshow(feature2DImage,[]);
 title(fig4.CurrentAxes,'Pixel representation projected onto first PC');
-saveas(fig4, sprintf('%s_first_pca.png', image_id));
+img_save(sprintf('%s_first_pca.png', image_id), feature2DImage);
 
 
 % Apply k-means algorithm to cluster pixels using the data matrix,
@@ -253,7 +253,7 @@ pixLabels = reshape(pixLabels,[numRows numCols]);
 fig5 = figure(5);
 imshow(label2rgb(pixLabels));
 title(fig5.CurrentAxes, 'Pixel clusters');
-saveas(fig5, sprintf('%s_pixel_clusters.png', image_id));
+img_save(sprintf('%s_pixel_clusters.png', image_id), label2rgb(pixLabels));
 
 
 
@@ -266,7 +266,7 @@ Aseg1(BW) = img(BW);
 Aseg2(~BW) = img(~BW);
 fig6 = figure(6)
 imshowpair(Aseg1,Aseg2,'montage')
-saveas(fig6, sprintf('%s_montage.png', image_id));
+img_save(sprintf('%s_montage.png', image_id), Aseg1,Aseg2);
 
 
 
